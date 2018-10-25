@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './Output.css';
-import OutputSpan from '../../molecules/OutputSpan/OutputSpan'
+import OutputDiv from '../../molecules/OutputDiv/OutputDiv';
 
 const Output = (props) => {
   // console.log('props', props);
@@ -9,10 +9,10 @@ const Output = (props) => {
 
   return (
     <div>
-      <OutputSpan label='height' value={height} isMetric={isMetric} />
-      <OutputSpan label='weight' value={weight} isMetric={isMetric} />
-      <OutputSpan label='bmi' value={bmi} />
-      <OutputSpan label='diagnose' value={bmiClass} />
+      <OutputDiv label='height' value={height} isMetric={isMetric} />
+      <OutputDiv label='weight' value={weight} isMetric={isMetric} />
+      <OutputDiv label='bmi' value={bmi} />
+      <OutputDiv label='diagnose' value={bmiClass} />
     </div>
   );
 };

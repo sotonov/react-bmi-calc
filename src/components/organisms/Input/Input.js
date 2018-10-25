@@ -4,10 +4,9 @@ import styles from './Input.css';
 import InputRange from '../../molecules/InputRange/InputRange'
 
 const Input = (props) => {
-  // const [height, weight] =
-  console.log('input props', props);
+  // console.log('input props', props);
   const {height, weight, isMetric} = props;
-  console.log(weight, height, isMetric);
+  // console.log(weight, height, isMetric);
   return (
     <div className={styles.input}>
       <InputRange

@@ -24,14 +24,12 @@ class Bmi extends Component {
   }
 
   handleHeightChange = (event) => {
-    // console.log('height', event.target.value);
     this.setState({
       height: +event.target.value
     }, this.setBmi);
   }
 
   handleWeightChange = (event) => {
-    // console.log('weight', event.target.value);
     this.setState({
       weight: +event.target.value
     }, this.setBmi);
@@ -59,7 +57,7 @@ class Bmi extends Component {
   render () {
     return (
       <div className={styles.bmi}>
-        <h1>BMI CALCULATOR</h1>
+        <h1 className={styles.title}>BMI CALCULATOR</h1>
         <Input
           handleHeightChange={this.handleHeightChange}
           handleWeightChange={this.handleWeightChange}

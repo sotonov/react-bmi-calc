@@ -1,17 +1,18 @@
 import React from 'react';
 
-import styles from './OutputSpan.css';
-import Span from '../../atoms/Span/Span';
+import styles from './OutputDiv.css';
+import ValueBox from '../../atoms/ValueBox/ValueBox';
+import Label from '../../atoms/Label/Label';
 import { toLb, toFtInch } from '../../../shared/utility';
 
-const OutputSpan = (props) => {
+const OutputDiv = (props) => {
   let { label, value, isMetric } = props;
   switch (label) {
     case 'height':
       value = isMetric ? `${Math.round(value)} cm` : `${toFtInch(value)}`;
       break;
     case 'weight':
-      value = isMetric ? `${Math.round(value)/2} kg` : `${toLb(value)} lb`;
+      value = isMetric ? `${Math.round(value*2)/2} kg` : `${toLb(value)} lb`;
       break;
     case 'bmi':
 
@@ -24,10 +25,11 @@ const OutputSpan = (props) => {
   }
 
   return (
-    <div className={styles.outputSpan}>
-      {label}<Span value={value} />
+    <div className={styles.output_div}>
+      <Label content={label} output />
+      <ValueBox value={value} />
     </div>
   );
 };
 
-export default OutputSpan;
+export default OutputDiv;

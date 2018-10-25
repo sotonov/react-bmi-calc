@@ -1,6 +1,22 @@
-.label {
+.label, .label-output, .label-output-diagnose {
   text-align: left;
+  float: left;
   margin-left: 5%;
   padding: 0px -5px;
   font-size: 1.2em;
+}
+
+.label-output, .label-output-diagnose {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  font-size: 1em;
+}
+
+@media screen and (max-width: 500px) {
+  .label-output-diagnose {
+    display: none;
+  }
 }

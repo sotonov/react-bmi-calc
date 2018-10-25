@@ -1,0 +1,19 @@
+.output_div {
+  /* text-align: left; */
+  display: block;
+  box-sizing: border-box;
+  background-color: white;
+  width: 90%;
+  height: 50px;
+  /* padding: 5px; */
+  padding: 0px 5px;
+  font-size: 2em;
+  font-weight: bold;
+  /* vertical-align: middle; */
+  cursor: default;
+  margin: 10px auto;
+  border: 2px solid #2497e3;
+  color: #a1d0ff;
+  position: relative;
+  z-index: 1;
+}
