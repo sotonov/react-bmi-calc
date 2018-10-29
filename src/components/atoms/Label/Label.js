@@ -1,17 +1,27 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 
 import styles from './Label.css';
 
-const Label = (props) => {
-  const {content, output} = props;
+type Props = {
+  content: 'string',
+  output?: boolean,
+}
 
-  let classes = [ 'label' ];
+let cx = classNames.bind(styles);
 
-  output && classes.push('output')
-  content === 'diagnose' && classes.push('diagnose')
+const Label = (
+  { content, output }: Props) => {
+
+  let className = cx({
+    label: true,
+    'label-output': output,
+    'label-output-diagnose': content === 'diagnose'
+  });
 
   return (
-    <div className={styles[classes.join('-')]}>{content}</div>
+    // <div className={styles[classes.join('-')]}>{content}</div>
+    <div className={className}>{content}</div>
   );
 };
 

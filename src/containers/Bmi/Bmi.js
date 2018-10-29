@@ -1,27 +1,45 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import * as React from 'react';
 
 import styles from './Bmi.css';
 import Input from '../../components/organisms/Input/Input';
 import Output from '../../components/organisms/Output/Output';
 import Button from '../../components/atoms/Button/Button';
 
-class Bmi extends Component {
+type Props = {
+  height: number,
+  weight: number,
+  bmiClass: string,
+};
+
+type State = {
+  height: number,
+  weight: number,
+  bmi: number,
+  bmiClass: string,
+  isMetric: boolean,
+};
+
+class Bmi extends React.Component<Props, State> {
   state = {
     height: this.props.height,
     weight: this.props.weight,
-    bmi: this.props.bmi,
+    bmi: 0,
     bmiClass: this.props.bmiClass,
-    isMetric: true
+    isMetric: true,
+  };
+
+  componentDidMount () {
+    this.setState({
+      bmi: this.calculateBmi(this.props.height, this.props.weight)
+    })
   }
 
-  static get defaultProps() {
-    return {
-      height: 180,
-      weight: 75,
-      bmi: 23.15,
-      bmiClass: 'Normal'
-    }
-  }
+  static defaultProps = {
+    height: 180,
+    weight: 75,
+    bmiClass: 'Normal',
+  };
 
   handleHeightChange = (event) => {
     this.setState({
@@ -35,8 +53,10 @@ class Bmi extends Component {
     }, this.setBmi);
   }
 
+  calculateBmi = (height, weight) => +(weight / Math.pow(height*1e-2, 2)).toFixed(2);
+
   setBmi = () => {
-    const bmi = +(this.state.weight / Math.pow(this.state.height*1e-2, 2)).toFixed(2);
+    const bmi = this.calculateBmi(this.state.height, this.state.weight);
     const bmiClass = this.getBmiClass(bmi);
     this.setState({
       bmi,
@@ -44,7 +64,7 @@ class Bmi extends Component {
     });
   }
 
-  getBmiClass = (bmi) =>{
+  getBmiClass = (bmi) => {
     return bmi > 29.99 ? 'Obese' : (bmi > 24.99 ? 'Overweight' : (bmi >= 18.5 ? 'Normal' : 'Underweight') );
   }
 
@@ -57,7 +77,7 @@ class Bmi extends Component {
   render () {
     return (
       <div className={styles.bmi}>
-        <h1 className={styles.title}>BMI CALCULATOR</h1>
+        <h1 className={styles['bmi-title']}>BMI CALCULATOR</h1>
         <Input
           handleHeightChange={this.handleHeightChange}
           handleWeightChange={this.handleWeightChange}

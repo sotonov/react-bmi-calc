@@ -1,12 +1,22 @@
 import React from 'react';
 
-import styles from './OutputDiv.css';
+import classNames from 'classnames/bind';
+import styles from './OutputDivider.css';
 import ValueBox from '../../atoms/ValueBox/ValueBox';
 import Label from '../../atoms/Label/Label';
 import { toLb, toFtInch } from '../../../shared/utility';
 
-const OutputDiv = (props) => {
-  let { label, value, isMetric } = props;
+let cx = classNames.bind(styles);
+
+type Props = {
+  label: string,
+  value: number | string,
+  isMetric?: boolean,
+}
+
+const OutputDivider = (
+  { label, value, isMetric }: Props) => {
+  // let { label, value, isMetric } = props;
   switch (label) {
     case 'height':
       value = isMetric ? `${Math.round(value)} cm` : `${toFtInch(value)}`;
@@ -21,15 +31,19 @@ const OutputDiv = (props) => {
 
       break;
     default:
-      console.log('An error has occurred.');
+      console.log('What happenned?');
   }
 
+  let className = cx({
+    'output-divider': true,
+  });
+
   return (
-    <div className={styles.output_div}>
+    <div className={className}>
       <Label content={label} output />
       <ValueBox value={value} />
     </div>
   );
 };
 
-export default OutputDiv;
+export default OutputDivider;

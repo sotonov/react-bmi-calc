@@ -1,23 +1,36 @@
 import React from 'react';
 
+import classNames from 'classnames/bind';
 import styles from './Input.css';
-import InputRange from '../../molecules/InputRange/InputRange'
+import InputSlider from '../../molecules/InputSlider/InputSlider';
 
-const Input = (props) => {
-  // console.log('input props', props);
-  const {height, weight, isMetric} = props;
-  // console.log(weight, height, isMetric);
+let cx = classNames.bind(styles);
+
+type Props = {
+  height: number,
+  weight: number,
+  isMetric: boolean,
+}
+
+const Input = (
+  { height, weight, isMetric, handleHeightChange, handleWeightChange }: Props) => {
+  // const {height, weight, isMetric} = props;
+
+  let className = cx({
+    'input': true,
+  });
+
   return (
-    <div className={styles.input}>
-      <InputRange
+    <div className={className}>
+      <InputSlider
         height
         value={height}
-        handleChange={props.handleHeightChange}
+        handleChange={handleHeightChange}
         isMetric={isMetric} />
-      <InputRange
+      <InputSlider
         weight
         value={weight}
-        handleChange={props.handleWeightChange}
+        handleChange={handleWeightChange}
         isMetric={isMetric} />
     </div>
   );

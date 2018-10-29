@@ -1,18 +1,32 @@
 import React from 'react';
 
-import style from './Output.css';
-import OutputDiv from '../../molecules/OutputDiv/OutputDiv';
+import classNames from 'classnames/bind';
+import styles from './Output.css';
+import OutputDivider from '../../molecules/OutputDivider/OutputDivider';
 
-const Output = (props) => {
-  // console.log('props', props);
-  const { height, weight, bmi, bmiClass, isMetric } = props;
+let cx = classNames.bind(styles);
+
+type Props = {
+  height: number,
+  weight: number,
+  bmi: number,
+  bmiClass: string,
+  isMetric: boolean,
+}
+
+const Output =
+  ({ height, weight, bmi, bmiClass, isMetric }: Props) => {
+
+  let className = cx({
+    'output': true,
+  });
 
   return (
-    <div>
-      <OutputDiv label='height' value={height} isMetric={isMetric} />
-      <OutputDiv label='weight' value={weight} isMetric={isMetric} />
-      <OutputDiv label='bmi' value={bmi} />
-      <OutputDiv label='diagnose' value={bmiClass} />
+    <div className={className}>
+      <OutputDivider label='height' value={height} isMetric={isMetric} />
+      <OutputDivider label='weight' value={weight} isMetric={isMetric} />
+      <OutputDivider label='bmi' value={bmi} />
+      <OutputDivider label='diagnose' value={bmiClass} />
     </div>
   );
 };

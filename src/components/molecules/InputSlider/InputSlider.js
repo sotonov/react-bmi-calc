@@ -1,13 +1,24 @@
 import React from 'react';
 
-import styles from './InputRange.css';
+import classNames from 'classnames/bind';
+import styles from './InputSlider.css';
 import Label from '../../atoms/Label/Label';
-import Range from '../../atoms/Range/Range';
+import Slider from '../../atoms/Slider/Slider';
 import { toLb, toFtInch } from '../../../shared/utility';
 
-const InputRange = (props) => {
-  const { value } = props;
-  const { height, weight, isMetric } = props;
+let cx = classNames.bind(styles);
+
+type Props = {
+  value: number,
+  height?: boolean,
+  weight?: boolean,
+  isMetric: boolean,
+}
+
+const InputSlider = (
+  { value, height, weight, isMetric, handleChange }: Props) => {
+  // const { value } = props;
+  // const { height, weight, isMetric } = props;
   const min = height ? 150 : 40;
   const max = height ? 220 : 130;
   const title = height ? 'Height' : 'Weight';
@@ -27,12 +38,16 @@ const InputRange = (props) => {
   const labelProps = { content };
   const rangeProps = { min, max, step, value };
 
+  let className = cx({
+    'input-slider': true,
+  });
+
   return (
-    <div className={styles.input_range}>
+    <div className={className}>
       <Label {...labelProps} />
-      <Range {...rangeProps} handleChange={props.handleChange}/>
+      <Slider {...rangeProps} handleChange={handleChange}/>
     </div>
   );
 };
 
-export default InputRange;
+export default InputSlider;
