@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Label.css';
 
 type Props = {
-  content: 'string',
+  content: string,
   output?: boolean,
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Output.css';
@@ -23,10 +23,10 @@ const Output =
 
   return (
     <div className={className}>
-      <OutputDivider label='height' value={height} isMetric={isMetric} />
-      <OutputDivider label='weight' value={weight} isMetric={isMetric} />
-      <OutputDivider label='bmi' value={bmi} />
-      <OutputDivider label='diagnose' value={bmiClass} />
+      <OutputDivider label='height' height={height} isMetric={isMetric} />
+      <OutputDivider label='weight' weight={weight} isMetric={isMetric} />
+      <OutputDivider label='bmi' bmi={bmi} />
+      <OutputDivider label='diagnose' bmiClass={bmiClass} />
     </div>
   );
 };

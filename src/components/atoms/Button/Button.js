@@ -1,10 +1,12 @@
-import React from 'react';
+
+import * as React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Button.css';
 
 type Props = {
-  content: 'string',
+  content: string,
+  handleClick: () => void
 }
 
 let cx = classNames.bind(styles);

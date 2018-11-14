@@ -1,0 +1,16 @@
+[ignore]
+.*/node_modules/.*
+.*/dist/.*
+.*webpack\.config\.js
+
+[include]
+
+[libs]
+flow-typed
+
+[lints]
+
+[options]
+all=true
+
+[strict]

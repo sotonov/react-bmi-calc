@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "flow-bin": "^0.86.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   }

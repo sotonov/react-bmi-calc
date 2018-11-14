@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import * as React from 'react';
 
 import styles from './Bmi.css';
@@ -41,19 +40,21 @@ class Bmi extends React.Component<Props, State> {
     bmiClass: 'Normal',
   };
 
-  handleHeightChange = (event) => {
+  handleHeightChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    (event.currentTarget: HTMLInputElement);
     this.setState({
-      height: +event.target.value
+      height: +event.currentTarget.value
     }, this.setBmi);
   }
 
-  handleWeightChange = (event) => {
+  handleWeightChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    (event.currentTarget: HTMLInputElement);
     this.setState({
-      weight: +event.target.value
+      weight: +event.currentTarget.value
     }, this.setBmi);
   }
 
-  calculateBmi = (height, weight) => +(weight / Math.pow(height*1e-2, 2)).toFixed(2);
+  calculateBmi = (height: number, weight: number) => +(weight / Math.pow(height*1e-2, 2)).toFixed(2);
 
   setBmi = () => {
     const bmi = this.calculateBmi(this.state.height, this.state.weight);
@@ -64,11 +65,11 @@ class Bmi extends React.Component<Props, State> {
     });
   }
 
-  getBmiClass = (bmi) => {
+  getBmiClass = (bmi: number) => {
     return bmi > 29.99 ? 'Obese' : (bmi > 24.99 ? 'Overweight' : (bmi >= 18.5 ? 'Normal' : 'Underweight') );
   }
 
-  handleClick = (event) => {
+  handleClick = () => {
     this.setState(prevState => {
       return { isMetric: !prevState.isMetric };
     })
@@ -83,7 +84,7 @@ class Bmi extends React.Component<Props, State> {
           handleWeightChange={this.handleWeightChange}
           {...this.state}
          />
-        <Output {...this.state}/>
+        <Output {...this.state} />
         <Button
           content={this.state.isMetric ? "Change to Imperial" : "Change to Metric"}
           handleClick={this.handleClick}

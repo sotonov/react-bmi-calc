@@ -4,8 +4,8 @@ import './index.css';
 
 import App from './App';
 
-const Index = () => {
-  return <div>Hello React!</div>;
-};
+const root: ?Element = document.getElementById('root');
 
-ReactDOM.render(<App />, document.getElementById("root"));
+if (root != null) {
+  ReactDOM.render(<App />, root);
+}

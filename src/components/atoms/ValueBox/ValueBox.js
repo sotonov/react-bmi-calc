@@ -1,20 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './ValueBox.css';
 
 type Props = {
-  value: number | string,
+  value: ?(number | string),
 }
 
 let cx = classNames.bind(styles);
 
 const ValueBox = (
   { value }: Props) => {
-  // const { value } = props;
-  // const classes = [ 'value-box' ];
-  //
-  // value === 'Obese' && classes.push('obese')
 
   let className = cx({
     'value-box': true,

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './OutputDivider.css';
@@ -10,28 +10,33 @@ let cx = classNames.bind(styles);
 
 type Props = {
   label: string,
-  value: number | string,
+  height?: number,
+  weight?: number,
+  bmi?: number,
+  bmiClass?: string,
   isMetric?: boolean,
 }
 
 const OutputDivider = (
-  { label, value, isMetric }: Props) => {
+  { label, height, weight, bmi, bmiClass, isMetric }: Props) => {
   // let { label, value, isMetric } = props;
-  switch (label) {
-    case 'height':
-      value = isMetric ? `${Math.round(value)} cm` : `${toFtInch(value)}`;
-      break;
-    case 'weight':
-      value = isMetric ? `${Math.round(value*2)/2} kg` : `${toLb(value)} lb`;
-      break;
-    case 'bmi':
 
-      break;
-    case 'diagnose':
+  let value;
 
-      break;
-    default:
-      console.log('What happenned?');
+  if (height) {
+    value = isMetric ? `${Math.round(height)} cm` : `${toFtInch(height)}`;
+  }
+
+  if (weight) {
+    value = isMetric ? `${Math.round(weight*2)/2} kg` : `${toLb(weight)} lb`;
+  }
+
+  if (bmi) {
+    value = bmi;
+  }
+
+  if (bmiClass) {
+    value = bmiClass;
   }
 
   let className = cx({

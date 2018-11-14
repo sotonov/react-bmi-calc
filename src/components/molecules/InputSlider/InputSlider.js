@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './InputSlider.css';
@@ -13,12 +13,11 @@ type Props = {
   height?: boolean,
   weight?: boolean,
   isMetric: boolean,
+  handleChange: (value: number) => void
 }
 
 const InputSlider = (
   { value, height, weight, isMetric, handleChange }: Props) => {
-  // const { value } = props;
-  // const { height, weight, isMetric } = props;
   const min = height ? 150 : 40;
   const max = height ? 220 : 130;
   const title = height ? 'Height' : 'Weight';

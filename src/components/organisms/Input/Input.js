@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Input.css';
@@ -10,11 +10,12 @@ type Props = {
   height: number,
   weight: number,
   isMetric: boolean,
+  handleHeightChange: Function,
+  handleWeightChange: Function
 }
 
 const Input = (
   { height, weight, isMetric, handleHeightChange, handleWeightChange }: Props) => {
-  // const {height, weight, isMetric} = props;
 
   let className = cx({
     'input': true,

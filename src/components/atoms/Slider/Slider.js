@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import './Slider.css';
 
@@ -7,6 +7,7 @@ type Props = {
   max: number,
   step: number,
   value: number,
+  handleChange: any
 }
 
 const Slider = (
