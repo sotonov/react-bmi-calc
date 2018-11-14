@@ -19,7 +19,6 @@ type Props = {
 
 const OutputDivider = (
   { label, height, weight, bmi, bmiClass, isMetric }: Props) => {
-  // let { label, value, isMetric } = props;
 
   let value;
 

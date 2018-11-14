@@ -20,7 +20,6 @@ const Label = (
   });
 
   return (
-    // <div className={styles[classes.join('-')]}>{content}</div>
     <div className={className}>{content}</div>
   );
 };

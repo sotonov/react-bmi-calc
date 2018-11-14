@@ -13,10 +13,10 @@ let cx = classNames.bind(styles);
 
 const Button = (
   { content, handleClick }: Props) => {
-  // const {content} = props;
+
   let className = cx({
     button: true
-  })
+  });
 
   return (
     <button

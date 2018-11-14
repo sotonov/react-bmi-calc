@@ -1,10 +1,6 @@
 import * as React from 'react';
 
-import classNames from 'classnames/bind';
-import styles from './Input.css';
 import InputSlider from '../../molecules/InputSlider/InputSlider';
-
-let cx = classNames.bind(styles);
 
 type Props = {
   height: number,
@@ -17,12 +13,8 @@ type Props = {
 const Input = (
   { height, weight, isMetric, handleHeightChange, handleWeightChange }: Props) => {
 
-  let className = cx({
-    'input': true,
-  });
-
   return (
-    <div className={className}>
+    <div>
       <InputSlider
         height
         value={height}

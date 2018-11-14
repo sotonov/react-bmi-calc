@@ -7,12 +7,11 @@ type Props = {
   max: number,
   step: number,
   value: number,
-  handleChange: any
+  handleChange: (value: number) => void
 }
 
 const Slider = (
   { min, max, step, value, handleChange }: Props) => {
-  // const { min, max, step, value } = props;
 
   return (
     <input
