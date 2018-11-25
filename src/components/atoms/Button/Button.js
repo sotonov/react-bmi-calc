@@ -6,7 +6,7 @@ import styles from './Button.css';
 
 type Props = {
   content: string,
-  handleClick: () => void
+  handleClick: Function
 }
 
 let cx = classNames.bind(styles);

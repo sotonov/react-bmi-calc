@@ -40,23 +40,23 @@ class Bmi extends React.Component<Props, State> {
     bmiClass: 'Normal',
   };
 
-  handleHeightChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleHeightChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     (event.currentTarget: HTMLInputElement);
     this.setState({
       height: +event.currentTarget.value
     }, this.setBmi);
   }
 
-  handleWeightChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleWeightChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     (event.currentTarget: HTMLInputElement);
     this.setState({
       weight: +event.currentTarget.value
     }, this.setBmi);
   }
 
-  calculateBmi = (height: number, weight: number) => +(weight / Math.pow(height*1e-2, 2)).toFixed(2);
+  calculateBmi = (height: number, weight: number): number => +(weight / Math.pow(height*1e-2, 2)).toFixed(2);
 
-  setBmi = () => {
+  setBmi = (): void => {
     const bmi = this.calculateBmi(this.state.height, this.state.weight);
     const bmiClass = this.getBmiClass(bmi);
     this.setState({
@@ -65,11 +65,11 @@ class Bmi extends React.Component<Props, State> {
     });
   }
 
-  getBmiClass = (bmi: number) => {
+  getBmiClass = (bmi: number): string => {
     return bmi > 29.99 ? 'Obese' : (bmi > 24.99 ? 'Overweight' : (bmi >= 18.5 ? 'Normal' : 'Underweight') );
   }
 
-  handleClick = () => {
+  handleClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
     this.setState(prevState => {
       return { isMetric: !prevState.isMetric };
     })
