@@ -7,7 +7,7 @@ type Props = {
   max: number,
   step: number,
   value: number,
-  handleChange: (value: number) => void
+  handleChange: (event: SyntheticInputEvent<HTMLInputElement>) => void
 }
 
 const Slider = (

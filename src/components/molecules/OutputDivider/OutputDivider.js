@@ -38,9 +38,7 @@ const OutputDivider = (
     value = bmiClass;
   }
 
-  let className = cx({
-    'output-divider': true,
-  });
+  let className = cx('output-divider');
 
   return (
     <div className={className}>

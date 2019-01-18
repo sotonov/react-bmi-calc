@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import classNames from 'classnames/bind';
 
@@ -6,7 +5,7 @@ import styles from './Button.css';
 
 type Props = {
   content: string,
-  handleClick: Function
+  handleClick: (event: SyntheticMouseEvent<HTMLButtonElement>) => void;
 }
 
 let cx = classNames.bind(styles);
@@ -14,9 +13,7 @@ let cx = classNames.bind(styles);
 const Button = (
   { content, handleClick }: Props) => {
 
-  let className = cx({
-    button: true
-  });
+  let className = cx('button');
 
   return (
     <button

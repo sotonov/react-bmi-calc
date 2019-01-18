@@ -4,6 +4,7 @@ import styles from './Bmi.css';
 import Input from '../../components/organisms/Input/Input';
 import Output from '../../components/organisms/Output/Output';
 import Button from '../../components/atoms/Button/Button';
+import * as cst from '../../constants/constants';
 
 type Props = {
   height: number,
@@ -35,9 +36,9 @@ class Bmi extends React.Component<Props, State> {
   }
 
   static defaultProps = {
-    height: 180,
-    weight: 75,
-    bmiClass: 'Normal',
+    height: cst.DEFAULT_HEIGHT,
+    weight: cst.DEFAULT_WEIGHT,
+    bmiClass: cst.DEFAULT_BMI_CLASS,
   };
 
   handleHeightChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
@@ -66,7 +67,7 @@ class Bmi extends React.Component<Props, State> {
   }
 
   getBmiClass = (bmi: number): string => {
-    return bmi > 29.99 ? 'Obese' : (bmi > 24.99 ? 'Overweight' : (bmi >= 18.5 ? 'Normal' : 'Underweight') );
+    return bmi > 29.99 ? cst.OBESE : (bmi > 24.99 ? cst.OVERWEIGHT : (bmi >= 18.5 ? cst.NORMAL : cst.UNDERWEIGHT) );
   }
 
   handleClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
@@ -86,7 +87,7 @@ class Bmi extends React.Component<Props, State> {
          />
         <Output {...this.state} />
         <Button
-          content={this.state.isMetric ? "Change to Imperial" : "Change to Metric"}
+          content={this.state.isMetric ? cst.CHANGE_TO_IMPERIAL : cst.CHANGE_TO_METRIC}
           handleClick={this.handleClick}
           />
       </div>

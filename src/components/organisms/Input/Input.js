@@ -6,8 +6,8 @@ type Props = {
   height: number,
   weight: number,
   isMetric: boolean,
-  handleHeightChange: Function,
-  handleWeightChange: Function
+  handleHeightChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
+  handleWeightChange: (event: SyntheticInputEvent<HTMLInputElement>) => void
 }
 
 const Input = (
