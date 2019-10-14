@@ -14,7 +14,7 @@ const ValueBox = (
 
   let className = cx({
     'value-box': true,
-    'value-box-obese': value === 'Obese'
+    'value-box-obese': value === 'Obese',
   });
 
   return (

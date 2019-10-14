@@ -16,7 +16,7 @@ const Label = (
   let className = cx({
     label: true,
     'label-output': output,
-    'label-output-diagnose': content === 'diagnose'
+    'label-output-diagnose': content === 'diagnose',
   });
 
   return (

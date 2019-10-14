@@ -58,7 +58,8 @@ class Bmi extends React.Component<Props, State> {
   calculateBmi = (height: number, weight: number): number => +(weight / Math.pow(height*1e-2, 2)).toFixed(2);
 
   setBmi = (): void => {
-    const bmi = this.calculateBmi(this.state.height, this.state.weight);
+    const { height, weight } = this.state;
+    const bmi = this.calculateBmi(height, weight);
     const bmiClass = this.getBmiClass(bmi);
     this.setState({
       bmi,
@@ -67,7 +68,7 @@ class Bmi extends React.Component<Props, State> {
   }
 
   getBmiClass = (bmi: number): string => {
-    return bmi > 29.99 ? cst.OBESE : (bmi > 24.99 ? cst.OVERWEIGHT : (bmi >= 18.5 ? cst.NORMAL : cst.UNDERWEIGHT) );
+    return bmi > 29.99 ? cst.OBESE : (bmi > 24.99 ? cst.OVERWEIGHT : (bmi >= 18.5 ? cst.NORMAL : cst.UNDERWEIGHT));
   }
 
   handleClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
