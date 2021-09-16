@@ -1,30 +1,28 @@
 import * as React from 'react';
 
 import InputSlider from '../../molecules/InputSlider/InputSlider';
+import * as cst from '../../../constants/constants';
 
 type Props = {
   height: number,
   weight: number,
   isMetric: boolean,
-  handleHeightChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
-  handleWeightChange: (event: SyntheticInputEvent<HTMLInputElement>) => void
+  handleInputChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
 }
 
 const Input = (
-  { height, weight, isMetric, handleHeightChange, handleWeightChange }: Props) => {
+  { height, weight, isMetric, handleInputChange }: Props) => {
 
   return (
     <div>
-      <InputSlider
-        height
-        value={height}
-        handleChange={handleHeightChange}
-        isMetric={isMetric} />
-      <InputSlider
-        weight
-        value={weight}
-        handleChange={handleWeightChange}
-        isMetric={isMetric} />
+        {[cst.HEIGHT, cst.WEIGHT].map(title => (
+            <InputSlider
+                key={title}
+                title={title}
+                value={title === cst.HEIGHT ? height : weight}
+                handleChange={handleInputChange}
+                isMetric={isMetric} />
+        ))}
     </div>
   );
 };
