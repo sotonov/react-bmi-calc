@@ -22,40 +22,29 @@ type State = {
 
 class Bmi extends React.Component<Props, State> {
   state = {
-    height: this.props.height,
-    weight: this.props.weight,
+    height: this.props.height || cst.DEFAULT_HEIGHT,
+    weight: this.props.weight || cst.DEFAULT_WEIGHT,
     bmi: 0,
-    bmiClass: this.props.bmiClass,
+    bmiClass: this.props.bmiClass || cst.DEFAULT_BMI_CLASS,
     isMetric: true,
   };
 
   componentDidMount () {
+    const { height, weight } = this.props;
     this.setState({
-      bmi: this.calculateBmi(this.props.height, this.props.weight)
+      bmi: this.calculateBmi(height, weight)
     })
   }
 
-  static defaultProps = {
-    height: cst.DEFAULT_HEIGHT,
-    weight: cst.DEFAULT_WEIGHT,
-    bmiClass: cst.DEFAULT_BMI_CLASS,
-  };
-
-  handleHeightChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     (event.currentTarget: HTMLInputElement);
+    const { value, name } = event.currentTarget;
     this.setState({
-      height: +event.currentTarget.value
-    }, this.setBmi);
+      [name]: Number(value),
+    }, this.setBmi)
   }
 
-  handleWeightChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
-    (event.currentTarget: HTMLInputElement);
-    this.setState({
-      weight: +event.currentTarget.value
-    }, this.setBmi);
-  }
-
-  calculateBmi = (height: number, weight: number): number => +(weight / Math.pow(height*1e-2, 2)).toFixed(2);
+  calculateBmi = (height: number, weight: number): number => Number(weight / Math.pow(height*1e-2, 2)).toFixed(2);
 
   setBmi = (): void => {
     const { height, weight } = this.state;
@@ -68,27 +57,35 @@ class Bmi extends React.Component<Props, State> {
   }
 
   getBmiClass = (bmi: number): string => {
-    return bmi > 29.99 ? cst.OBESE : (bmi > 24.99 ? cst.OVERWEIGHT : (bmi >= 18.5 ? cst.NORMAL : cst.UNDERWEIGHT));
+    if (bmi > 29.99) {
+      return cst.OBESE;
+    } else if (bmi > 24.99) {
+      return cst.OVERWEIGHT;
+    } else if (bmi < 18.5) {
+      return cst.UNDERWEIGHT;
+    } else {
+      return cst.NORMAL;
+    }
   }
 
-  handleClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+  handleClick = (): void => {
     this.setState(prevState => {
       return { isMetric: !prevState.isMetric };
     })
   }
 
   render () {
+    const { isMetric } = this.state;
     return (
       <div className={styles.bmi}>
         <h1 className={styles['bmi-title']}>BMI CALCULATOR</h1>
         <Input
-          handleHeightChange={this.handleHeightChange}
-          handleWeightChange={this.handleWeightChange}
+          handleInputChange={this.handleChange}
           {...this.state}
          />
         <Output {...this.state} />
         <Button
-          content={this.state.isMetric ? cst.CHANGE_TO_IMPERIAL : cst.CHANGE_TO_METRIC}
+          content={isMetric ? cst.CHANGE_TO_IMPERIAL : cst.CHANGE_TO_METRIC}
           handleClick={this.handleClick}
           />
       </div>

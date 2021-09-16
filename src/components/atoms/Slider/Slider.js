@@ -3,6 +3,7 @@ import * as React from 'react';
 import './Slider.css';
 
 type Props = {
+  name: string,
   min: number,
   max: number,
   step: number,
@@ -11,11 +12,12 @@ type Props = {
 }
 
 const Slider = (
-  { min, max, step, value, handleChange }: Props) => {
+  { name, min, max, step, value, handleChange }: Props) => {
 
   return (
     <input
       type='range'
+      name={name}
       min={min}
       max={max}
       step={step}
