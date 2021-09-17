@@ -3,14 +3,11 @@ import * as React from 'react';
 import styles from './Bmi.css';
 import Input from '../../components/organisms/Input/Input';
 import Output from '../../components/organisms/Output/Output';
-import Button from '../../components/atoms/Button/Button';
+import Settings from '../../components/organisms/Settings/Settings';
+import { calculateBmi } from '../../utils/calculateBmi';
+import { getBmiClass } from '../../utils/getBmiClass';
 import * as cst from '../../constants/constants';
-
-type Props = {
-  height: number,
-  weight: number,
-  bmiClass: string,
-};
+import t from '../../constants/translations';
 
 type State = {
   height: number,
@@ -18,76 +15,70 @@ type State = {
   bmi: number,
   bmiClass: string,
   isMetric: boolean,
+  lang: string,
 };
 
-class Bmi extends React.Component<Props, State> {
+class Bmi extends React.Component<{}, State> {
   state = {
-    height: this.props.height || cst.DEFAULT_HEIGHT,
-    weight: this.props.weight || cst.DEFAULT_WEIGHT,
-    bmi: 0,
-    bmiClass: this.props.bmiClass || cst.DEFAULT_BMI_CLASS,
+    height: cst.DEFAULT_HEIGHT,
+    weight: cst.DEFAULT_WEIGHT,
+    bmi: calculateBmi(cst.DEFAULT_HEIGHT, cst.DEFAULT_WEIGHT),
+    bmiClass: t[cst.EN][cst.DEFAULT_BMI_CLASS],
     isMetric: true,
+    lang: cst.EN,
   };
-
-  componentDidMount () {
-    const { height, weight } = this.props;
-    this.setState({
-      bmi: this.calculateBmi(height, weight)
-    })
-  }
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     (event.currentTarget: HTMLInputElement);
     const { value, name } = event.currentTarget;
-    this.setState({
-      [name]: Number(value),
-    }, this.setBmi)
-  }
-
-  calculateBmi = (height: number, weight: number): number => Number(weight / Math.pow(height*1e-2, 2)).toFixed(2);
+    this.setState(
+      {
+        [name]: Number(value),
+      },
+      this.setBmi
+    );
+  };
 
   setBmi = (): void => {
-    const { height, weight } = this.state;
-    const bmi = this.calculateBmi(height, weight);
-    const bmiClass = this.getBmiClass(bmi);
+    const { height, weight, lang } = this.state;
+    const bmi = calculateBmi(height, weight);
+    const bmiClass = t[lang][getBmiClass(bmi)];
     this.setState({
       bmi,
-      bmiClass
+      bmiClass,
     });
-  }
+  };
 
-  getBmiClass = (bmi: number): string => {
-    if (bmi > 29.99) {
-      return cst.OBESE;
-    } else if (bmi > 24.99) {
-      return cst.OVERWEIGHT;
-    } else if (bmi < 18.5) {
-      return cst.UNDERWEIGHT;
-    } else {
-      return cst.NORMAL;
-    }
-  }
-
-  handleClick = (): void => {
+  changeMetric = (): void => {
     this.setState(prevState => {
       return { isMetric: !prevState.isMetric };
-    })
-  }
+    });
+  };
 
-  render () {
-    const { isMetric } = this.state;
+  changeLanguage = (event: SyntheticInputEvent<HTMLSelectElement>): void => {
+    const { value: lang } = event.currentTarget;
+    this.setState(
+      {
+        lang,
+        isMetric: true,
+      },
+      this.setBmi
+    );
+  };
+
+  render() {
+    const { isMetric, lang } = this.state;
     return (
       <div className={styles.bmi}>
-        <h1 className={styles['bmi-title']}>BMI CALCULATOR</h1>
-        <Input
-          handleInputChange={this.handleChange}
-          {...this.state}
-         />
+        <h1 className={styles['bmi-title']}>{t[lang].bmiCalculator}</h1>
+        <Input handleInputChange={this.handleChange} {...this.state} />
         <Output {...this.state} />
-        <Button
-          content={isMetric ? cst.CHANGE_TO_IMPERIAL : cst.CHANGE_TO_METRIC}
-          handleClick={this.handleClick}
-          />
+        <Settings
+          isMetric={isMetric}
+          lang={lang}
+          handleClick={this.changeMetric}
+          handleChangeLanguage={this.changeLanguage}
+        />
       </div>
     );
   }

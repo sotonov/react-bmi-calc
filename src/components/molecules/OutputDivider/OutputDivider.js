@@ -1,6 +1,7 @@
 import * as React from 'react';
-
+// $FlowFixMe
 import classNames from 'classnames/bind';
+
 import styles from './OutputDivider.css';
 import ValueBox from '../../atoms/ValueBox/ValueBox';
 import Label from '../../atoms/Label/Label';
@@ -10,16 +11,21 @@ let cx = classNames.bind(styles);
 
 type Props = {
   label: string,
-  height?: number,
-  weight?: number,
-  bmi?: number,
-  bmiClass?: string,
-  isMetric?: boolean,
-}
+  height: number,
+  weight: number,
+  bmi: number,
+  bmiClass: string,
+  isMetric: boolean,
+};
 
-const OutputDivider = (
-  { label, height, weight, bmi, bmiClass, isMetric }: Props) => {
-
+const OutputDivider = ({
+  label,
+  height,
+  weight,
+  bmi,
+  bmiClass,
+  isMetric,
+}: Props) => {
   let value;
 
   if (height) {
@@ -27,7 +33,9 @@ const OutputDivider = (
   }
 
   if (weight) {
-    value = isMetric ? `${Math.round(weight*2)/2} kg` : `${toLb(weight)} lb`;
+    value = isMetric
+      ? `${Math.round(weight * 2) / 2} kg`
+      : `${toLb(weight)} lb`;
   }
 
   if (bmi) {
@@ -35,14 +43,14 @@ const OutputDivider = (
   }
 
   if (bmiClass) {
-    value = bmiClass;
+    value = bmiClass.toLowerCase();
   }
 
   let className = cx('output-divider');
 
   return (
     <div className={className}>
-      <Label content={label} output />
+      <Label content={label.toLowerCase()} output />
       <ValueBox value={value} />
     </div>
   );
