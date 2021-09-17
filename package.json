@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "prettier": "prettier --write \"src/**/*.js\"",
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "css-loader": "^1.0.0",
     "flow-bin": "^0.86.0",
     "html-webpack-plugin": "^3.2.0",
+    "prettier": "^2.4.1",
     "style-loader": "^0.23.1",
     "webpack": "^4.22.0",
     "webpack-cli": "^3.1.2",

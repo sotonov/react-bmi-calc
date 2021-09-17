@@ -8,15 +8,13 @@ type Props = {
   max: number,
   step: number,
   value: number,
-  handleChange: (event: SyntheticInputEvent<HTMLInputElement>) => void
-}
+  handleChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
+};
 
-const Slider = (
-  { name, min, max, step, value, handleChange }: Props) => {
-
+const Slider = ({ name, min, max, step, value, handleChange }: Props) => {
   return (
     <input
-      type='range'
+      type="range"
       name={name}
       min={min}
       max={max}

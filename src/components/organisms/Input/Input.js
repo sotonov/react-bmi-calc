@@ -6,24 +6,32 @@ import * as cst from '../../../constants/constants';
 type Props = {
   height: number,
   weight: number,
+  lang: string,
   isMetric: boolean,
   handleInputChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
-}
+};
 
-const Input = (
-  { height, weight, isMetric, handleInputChange }: Props) => {
-
+const Input = ({
+  height,
+  weight,
+  lang,
+  isMetric,
+  handleInputChange,
+}: Props) => {
   return (
-    <div>
-        {[cst.HEIGHT, cst.WEIGHT].map(title => (
-            <InputSlider
-                key={title}
-                title={title}
-                value={title === cst.HEIGHT ? height : weight}
-                handleChange={handleInputChange}
-                isMetric={isMetric} />
-        ))}
-    </div>
+    <>
+      {[cst.HEIGHT, cst.WEIGHT].map(title => (
+        <InputSlider
+          key={title}
+          title={title}
+          lang={lang}
+          isMetric={isMetric}
+          isHeight={title === cst.HEIGHT}
+          value={title === cst.HEIGHT ? height : weight}
+          handleChange={handleInputChange}
+        />
+      ))}
+    </>
   );
 };
 
