@@ -15,7 +15,7 @@
 @media screen and (max-width: 500px) {
   .bmi {
     width: 100%;
-    margin: 0px;
+    margin: 0;
     border: none;
   }
 }

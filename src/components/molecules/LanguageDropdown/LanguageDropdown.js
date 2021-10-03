@@ -18,7 +18,7 @@ const LanguageDropdown = ({ lang, handleChange }: Props) => {
         onChange={handleChange}
         className={styles.select}
       >
-        {[cst.EN, cst.FR, cst.ES, cst.RS, cst.BG].map(language => (
+        {cst.LANGUAGES.map(language => (
           <option key={language} value={language}>
             {language}
           </option>

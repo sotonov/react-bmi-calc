@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './OutputDivider.css';
 import ValueBox from '../../atoms/ValueBox/ValueBox';
 import Label from '../../atoms/Label/Label';
-import { toLb, toFtInch } from '../../../shared/utility';
+import { toLb, toFtInch } from '../../../utils/convertUnits';
 
 let cx = classNames.bind(styles);
 

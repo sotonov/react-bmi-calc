@@ -20,7 +20,7 @@ const Input = ({
 }: Props) => {
   return (
     <>
-      {[cst.HEIGHT, cst.WEIGHT].map(title => (
+      {cst.SLIDER_TITLES.map(title => (
         <InputSlider
           key={title}
           title={title}
