@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Label from '../../atoms/Label/Label';
 import Slider from '../../atoms/Slider/Slider';
-import { toLb, toFtInch } from '../../../shared/utility';
+import { toLb, toFtInch } from '../../../utils/convertUnits';
 import * as cst from '../../../constants/constants';
 import t from '../../../constants/translations';
 
@@ -43,10 +43,10 @@ const InputSlider = ({
   const rangeProps = { min, max, step, value, name: title.toLowerCase() };
 
   return (
-    <div>
+    <>
       <Label {...labelProps} />
       <Slider {...rangeProps} handleChange={handleChange} />
-    </div>
+    </>
   );
 };
 

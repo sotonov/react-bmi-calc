@@ -16,7 +16,7 @@ type Props = {
 const Output = ({ lang, height, weight, bmi, bmiClass, isMetric }: Props) => {
   return (
     <>
-      {[cst.HEIGHT, cst.WEIGHT, cst.BMI, cst.DIAGNOSIS].map(label => (
+      {cst.OUTPUT_LABELS.map(label => (
         <OutputDivider
           key={label}
           label={t[lang][label]}
